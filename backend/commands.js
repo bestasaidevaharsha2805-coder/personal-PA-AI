@@ -17,7 +17,11 @@ async function processCommand({
 }) {
   const text = message.trim();
   const lower = text.toLowerCase();
-
+const normalized = lower
+  .replace(/[?!.,]/g, "")
+  .replace(/\s+/g, " ")
+  .trim();
+  
   const assistantName =
     assistant.name || "Assistant";
 
@@ -55,21 +59,27 @@ async function processCommand({
   // -----------------------------
   // Time
   // -----------------------------
+// -----------------------------
+// Time
+// -----------------------------
+
 if (
-  lower.includes("what time") ||
-  lower.includes("what is the time") ||
-  lower.includes("what's the time") ||
-  lower.includes("current time") ||
-  lower.includes("time now") ||
-  lower.includes("time") ||
-  lower === "time?"
+  normalized === "time" ||
+  normalized.includes("time now") ||
+  normalized.includes("what time") ||
+  normalized.includes("what is the time") ||
+  normalized.includes("whats the time") ||
+  normalized.includes("current time") ||
+  normalized.includes("tell me the time") ||
+  normalized.includes("tell me time")
 ) {
   const now = new Date();
 
   return {
-    reply: `The current time is ${now.toLocaleTimeString([], {
+    reply: `The current time is ${now.toLocaleTimeString("en-IN", {
       hour: "2-digit",
-      minute: "2-digit"
+      minute: "2-digit",
+      hour12: true
     })}.`,
     type: "utility"
   };
