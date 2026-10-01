@@ -188,19 +188,19 @@ if (
       type: "conversation"
     };
   }
+// -----------------------------
+// Default AI response
+// -----------------------------
 
-  // -----------------------------
-  // Default response
-  // -----------------------------
+const memories = await getMemories(userId);
 
-  return {
-    reply:
-      `I understood your message: "${text}". ` +
-      `My advanced AI brain isn't connected yet, but the foundation is ready.`,
-    type: "conversation"
-  };
-}
+const aiResult = await askAI({
+  message: text,
+  assistant,
+  memories
+});
 
-module.exports = {
-  processCommand
+return {
+  reply: aiResult.reply,
+  type: "conversation"
 };
