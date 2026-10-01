@@ -1,0 +1,22 @@
+{
+  "name": "personal-ai-pa",
+  "version": "1.0.0",
+  "description": "A professional personal AI assistant platform",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "keywords": [
+    "ai",
+    "personal-assistant",
+    "voice-assistant",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0"
+  }
+}
