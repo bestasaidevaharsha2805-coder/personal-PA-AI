@@ -58,12 +58,6 @@ const normalized = lower
 // -----------------------------
 // Time
 // -----------------------------
-
-const normalized = lower
-  .replace(/[?!.,]/g, "")
-  .replace(/\s+/g, " ")
-  .trim();
-
 if (
   normalized === "time" ||
   normalized.includes("time now") ||
