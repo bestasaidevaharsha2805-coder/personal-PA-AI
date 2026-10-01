@@ -55,14 +55,13 @@ async function processCommand({
   // -----------------------------
   // Time
   // -----------------------------
-
- if (
+if (
   lower.includes("what time") ||
   lower.includes("what is the time") ||
+  lower.includes("what's the time") ||
   lower.includes("current time") ||
   lower.includes("time now") ||
-  lower.includes("what's the time") ||
-  lower === "time" ||
+  lower.includes("time") ||
   lower === "time?"
 ) {
   const now = new Date();
@@ -75,7 +74,7 @@ async function processCommand({
     type: "utility"
   };
 }
-
+ 
   // -----------------------------
   // Date
   // -----------------------------
