@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A professional personal AI assistant platform."
+    >
+
+    <meta
+        name="theme-color"
+        content="#08090d"
+    >
+
+    <title>Personal AI Assistant</title>
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         APP LOADING SCREEN
+    ========================================================== -->
+    <div id="appLoader" class="app-loader">
+        <div class="loader-orb">
+            <div class="loader-ring"></div>
+            <div class="loader-core">AI</div>
+        </div>
+
+        <h2>Personal AI</h2>
+        <p>Preparing your assistant...</p>
+    </div>
+
+
+    <!-- =========================================================
+         MAIN APPLICATION
+    ========================================================== -->
+    <div id="app" class="app hidden">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+        <aside id="sidebar" class="sidebar">
+
+            <div class="sidebar-top">
+
+                <!-- Brand -->
+                <div class="brand">
+                    <div class="brand-mark">
+                        <span>✦</span>
+                    </div>
+
+                    <div class="brand-text">
+                        <strong>Personal AI</strong>
+                        <span>Assistant OS</span>
+                    </div>
+                </div>
+
+                <!-- New conversation -->
+                <button
+                    id="newChatBtn"
+                    class="new-chat-btn"
+                    type="button"
+                >
+                    <span class="btn-icon">＋</span>
+                    <span>New conversation</span>
+                </button>
+
+                <!-- Navigation -->
+                <nav class="main-nav" aria-label="Main navigation">
+
+                    <button
+                        class="nav-item active"
+                        type="button"
+                        data-view="chat"
+                    >
+                        <span class="nav-icon">◉</span>
+                        <span>Assistant</span>
+                    </button>
+
+                    <button
+                        class="nav-item"
+                        type="button"
+                        data-view="memory"
+                    >
+                        <span class="nav-icon">◇</span>
+                        <span>Memory</span>
+                    </button>
+
+                    <button
+                        class="nav-item"
+                        type="button"
+                        data-view="tasks"
+                    >
+                        <span class="nav-icon">✓</span>
+                        <span>Tasks</span>
+                    </button>
+
+                    <button
+                        class="nav-item"
+                        type="button"
+                        data-view="voice"
+                    >
+                        <span class="nav-icon">◌</span>
+                        <span>Voice Studio</span>
+                    </button>
+
+                    <button
+                        class="nav-item"
+                        type="button"
+                        data-view="calls"
+                    >
+                        <span class="nav-icon">⌕</span>
+                        <span>Calls</span>
+                    </button>
+
+                </nav>
+
+            </div>
+
+
+            <!-- Sidebar bottom -->
+            <div class="sidebar-bottom">
+
+                <div class="connection-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>System ready</strong>
+                        <small id="connectionText">
+                            Local assistant online
+                        </small>
+                    </div>
+                </div>
+
+                <button
+                    id="settingsBtn"
+                    class="settings-nav-btn"
+                    type="button"
+                >
+                    <span>⚙</span>
+                    <span>Settings</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+        <main class="main-content">
+
+            <!-- =================================================
+                 TOP BAR
+            ================================================== -->
+            <header class="topbar">
+
+                <div class="mobile-brand">
+                    <button
+                        id="mobileMenuBtn"
+                        class="icon-btn"
+                        type="button"
+                        aria-label="Open menu"
+                    >
+                        ☰
+                    </button>
+
+                    <div class="mobile-title">
+                        <strong>Personal AI</strong>
+                    </div>
+                </div>
+
+
+                <div class="topbar-left">
+
+                    <div class="page-title">
+                        <span class="eyebrow">PERSONAL ASSISTANT</span>
+                        <h1 id="pageTitle">Your Assistant</h1>
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <button
+                        id="notificationsBtn"
+                        class="icon-btn"
+                        type="button"
+                        aria-label="Notifications"
+                    >
+                        ♢
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <button
+                        id="profileBtn"
+                        class="profile-button"
+                        type="button"
+                    >
+                        <div
+                            id="profileAvatar"
+                            class="profile-avatar"
+                        >
+                            Y
+                        </div>
+
+                        <div class="profile-info">
+                            <strong id="profileName">
+                                You
+                            </strong>
+
+                            <span>Personal account</span>
+                        </div>
+
+                        <span class="profile-chevron">⌄</span>
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CONTENT VIEWS
+            ================================================== -->
+            <section class="content-area">
+
+
+                <!-- =================================================
+                     CHAT VIEW
+                ================================================== -->
+                <section
+                    id="chatView"
+                    class="view active-view"
+                    data-view-panel="chat"
+                >
+
+                    <div class="assistant-layout">
+
+                        <!-- Assistant hero -->
+                        <div class="assistant-hero">
+
+                            <div class="assistant-status">
+                                <span class="live-dot"></span>
+                                <span id="assistantStatus">
+                                    Ready to help
+                                </span>
+                            </div>
+
+
+                            <div class="assistant-orb-container">
+
+                                <div class="orb-glow"></div>
+
+                                <div
+                                    id="assistantOrb"
+                                    class="assistant-orb"
+                                >
+                                    <div class="orb-inner">
+                                        <span id="orbSymbol">✦</span>
+                                    </div>
+                                </div>
+
+                                <div class="orb-ring ring-one"></div>
+                                <div class="orb-ring ring-two"></div>
+
+                            </div>
+
+
+                            <h2 id="assistantGreeting">
+                                How can I help you?
+                            </h2>
+
+                            <p id="assistantSubtitle">
+                                Ask me something, give me a task,
+                                or just start talking.
+                            </p>
+
+
+                            <!-- Quick actions -->
+                            <div class="quick-actions">
+
+                                <button
+                                    class="quick-action"
+                                    type="button"
+                                    data-prompt="What can you help me with?"
+                                >
+                                    <span>✦</span>
+                                    <span>What can you do?</span>
+                                </button>
+
+                                <button
+                                    class="quick-action"
+                                    type="button"
+                                    data-prompt="Remember that I am building a personal AI assistant."
+                                >
+                                    <span>◇</span>
+                                    <span>Remember something</span>
+                                </button>
+
+                                <button
+                                    class="quick-action"
+                                    type="button"
+                                    data-prompt="What time is it?"
+                                >
+                                    <span>◷</span>
+                                    <span>Check the time</span>
+                                </button>
+
+                                <button
+                                    class="quick-action"
+                                    type="button"
+                                    data-prompt="Help me plan my day."
+                                >
+                                    <span>✓</span>
+                                    <span>Plan my day</span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Conversation -->
+                        <div class="conversation-panel">
+
+                            <div
+                                id="chatMessages"
+                                class="chat-messages"
+                                aria-live="polite"
+                            >
+
+                                <!-- Initial assistant message -->
+                                <article class="message assistant-message">
+
+                                    <div class="message-avatar">
+                                        ✦
+                                    </div>
+
+                                    <div class="message-content">
+
+                                        <div class="message-meta">
+                                            <strong id="messageAssistantName">
+                                                Your Assistant
+                                            </strong>
+
+                                            <time>
+                                                Now
+                                            </time>
+                                        </div>
+
+                                        <div class="message-bubble">
+                                            <p>
+                                                Hello. I'm ready when you are.
+                                                You can type a message or use
+                                                the microphone to talk with me.
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                </article>
+
+                            </div>
+
+
+                            <!-- Typing indicator -->
+                            <div
+                                id="typingIndicator"
+                                class="typing-indicator hidden"
+                            >
+                                <div class="typing-avatar">
+                                    ✦
+                                </div>
+
+                                <div class="typing-bubble">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+
+
+                            <!-- Composer -->
+                            <div class="composer-wrapper">
+
+                                <form
+                                    id="chatForm"
+                                    class="chat-composer"
+                                >
+
+                                    <button
+                                        id="attachmentBtn"
+                                        class="composer-icon-btn"
+                                        type="button"
+                                        aria-label="Attach"
+                                    >
+                                        ＋
+                                    </button>
+
+
+                                    <textarea
+                                        id="messageInput"
+                                        rows="1"
+                                        maxlength="4000"
+                                        placeholder="Message your assistant..."
+                                        aria-label="Message your assistant"
+                                    ></textarea>
+
+
+                                    <div class="composer-actions">
+
+                                        <button
+                                            id="micBtn"
+                                            class="mic-btn"
+                                            type="button"
+                                            aria-label="Start voice input"
+                                            title="Voice input"
+                                        >
+                                            ◉
+                                        </button>
+
+                                        <button
+                                            id="sendBtn"
+                                            class="send-btn"
+                                            type="submit"
+                                            aria-label="Send message"
+                                        >
+                                            ↑
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+
+                                <div class="composer-footer">
+
+                                    <span>
+                                        <span class="secure-icon">⌁</span>
+                                        Your assistant is ready
+                                    </span>
+
+                                    <span>
+                                        Enter to send
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     MEMORY VIEW
+                ================================================== -->
+                <section
+                    id="memoryView"
+                    class="view"
+                    data-view-panel="memory"
+                >
+
+                    <div class="section-header">
+                        <div>
+                            <span class="eyebrow">
+                                PERSONAL CONTEXT
+                            </span>
+
+                            <h2>Memory</h2>
+
+                            <p>
+                                Information your assistant is allowed
+                                to remember for future conversations.
+                            </p>
+                        </div>
+
+                        <button
+                            id="addMemoryBtn"
+                            class="primary-btn"
+                            type="button"
+                        >
+                            ＋ Add memory
+                        </button>
+                    </div>
+
+
+                    <div
+                        id="memoryList"
+                        class="memory-grid"
+                    >
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                ◇
+                            </div>
+
+                            <h3>No memories yet</h3>
+
+                            <p>
+                                Tell your assistant something like
+                                “Remember that I prefer short answers.”
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     TASKS VIEW
+                ================================================== -->
+                <section
+                    id="tasksView"
+                    class="view"
+                    data-view-panel="tasks"
+                >
+
+                    <div class="section-header">
+
+                        <div>
+                            <span class="eyebrow">
+                                PERSONAL AUTOMATION
+                            </span>
+
+                            <h2>Tasks & Reminders</h2>
+
+                            <p>
+                                Keep track of things you want your
+                                assistant to help you remember.
+                            </p>
+                        </div>
+
+                        <button
+                            id="addTaskBtn"
+                            class="primary-btn"
+                            type="button"
+                        >
+                            ＋ Add task
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="taskList"
+                        class="task-list"
+                    >
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                ✓
+                            </div>
+
+                            <h3>No tasks yet</h3>
+
+                            <p>
+                                Your reminders and personal tasks
+                                will appear here.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     VOICE STUDIO
+                ================================================== -->
+                <section
+                    id="voiceView"
+                    class="view"
+                    data-view-panel="voice"
+                >
+
+                    <div class="section-header">
+
+                        <div>
+                            <span class="eyebrow">
+                                VOICE CONTROL
+                            </span>
+
+                            <h2>Voice Studio</h2>
+
+                            <p>
+                                Configure how your assistant listens
+                                and speaks.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="voice-grid">
+
+                        <!-- Voice input -->
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                ◉
+                            </div>
+
+                            <h3>Voice Input</h3>
+
+                            <p>
+                                Talk naturally to your assistant
+                                using your microphone.
+                            </p>
+
+                            <button
+                                id="voiceTestBtn"
+                                class="secondary-btn"
+                                type="button"
+                            >
+                                Test microphone
+                            </button>
+
+                            <div
+                                id="voiceStatus"
+                                class="small-status"
+                            >
+                                Microphone not active
+                            </div>
+
+                        </div>
+
+
+                        <!-- Speech output -->
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                ♫
+                            </div>
+
+                            <h3>Voice Output</h3>
+
+                            <p>
+                                Your assistant can read responses
+                                aloud using available device voices.
+                            </p>
+
+                            <label
+                                class="toggle-row"
+                            >
+                                <span>
+                                    Speak responses
+                                </span>
+
+                                <input
+                                    id="speechToggle"
+                                    type="checkbox"
+                                    checked
+                                >
+
+                                <span class="toggle-switch"></span>
+                            </label>
+
+                        </div>
+
+
+                        <!-- Voice selection -->
+                        <div class="feature-card wide-card">
+
+                            <div class="feature-icon">
+                                ✦
+                            </div>
+
+                            <h3>Assistant Voice</h3>
+
+                            <p>
+                                Choose an available voice from
+                                your device.
+                            </p>
+
+                            <label
+                                for="voiceSelect"
+                                class="input-label"
+                            >
+                                Voice
+                            </label>
+
+                            <select
+                                id="voiceSelect"
+                                class="select-input"
+                            >
+                                <option value="">
+                                    Loading available voices...
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <!-- Future voice profile -->
+                        <div class="feature-card wide-card">
+
+                            <div class="feature-icon">
+                                ♢
+                            </div>
+
+                            <h3>Personal Voice Profile</h3>
+
+                            <p>
+                                A future voice-provider connection
+                                can use an authorized voice profile
+                                for your assistant.
+                            </p>
+
+                            <div class="notice-box">
+                                <strong>Consent required</strong>
+
+                                <span>
+                                    Voice cloning will only be connected
+                                    through an appropriate provider with
+                                    explicit user authorization.
+                                </span>
+                            </div>
+
+                            <button
+                                id="recordVoiceBtn"
+                                class="secondary-btn"
+                                type="button"
+                            >
+                                Start voice sample
+                            </button>
+
+                            <div
+                                id="recordingStatus"
+                                class="small-status"
+                            >
+                                No recording in progress
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     CALLS VIEW
+                ================================================== -->
+                <section
+                    id="callsView"
+                    class="view"
+                    data-view-panel="calls"
+                >
+
+                    <div class="section-header">
+
+                        <div>
+                            <span class="eyebrow">
+                                COMMUNICATION
+                            </span>
+
+                            <h2>Calls</h2>
+
+                            <p>
+                                Manage future AI-powered phone
+                                communication from one place.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="calls-dashboard">
+
+                        <div class="call-status-card">
+
+                            <div class="call-orb">
+                                ☎
+                            </div>
+
+                            <div>
+                                <span class="eyebrow">
+                                    TELEPHONY
+                                </span>
+
+                                <h3>Phone integration</h3>
+
+                                <p>
+                                    The calling layer is prepared for
+                                    a future telephony provider.
+                                </p>
+                            </div>
+
+                            <span class="integration-badge">
+                                Not connected
+                            </span>
+
+                        </div>
+
+
+                        <div class="call-feature-grid">
+
+                            <div class="feature-card">
+
+                                <div class="feature-icon">
+                                    ↗
+                                </div>
+
+                                <h3>Outgoing calls</h3>
+
+                                <p>
+                                    Allow the assistant to place
+                                    authorized calls on your behalf.
+                                </p>
+
+                            </div>
+
+
+                            <div class="feature-card">
+
+                                <div class="feature-icon">
+                                    ↙
+                                </div>
+
+                                <h3>Incoming calls</h3>
+
+                                <p>
+                                    Configure the assistant to answer
+                                    supported calls when enabled.
+                                </p>
+
+                            </div>
+
+
+                            <div class="feature-card">
+
+                                <div class="feature-icon">
+                                    ≋
+                                </div>
+
+                                <h3>Call summaries</h3>
+
+                                <p>
+                                    Save useful summaries and messages
+                                    after supported calls.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="notice-box large-notice">
+
+                            <strong>Phone access is protected</strong>
+
+                            <span>
+                                Real phone calls require a telephony
+                                provider and server-side credentials.
+                                High-risk actions will require explicit
+                                confirmation before execution.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         SETTINGS MODAL
+    ========================================================== -->
+    <div
+        id="settingsModal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="settingsTitle"
+    >
+
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">
+                        PERSONALIZATION
+                    </span>
+
+                    <h2 id="settingsTitle">
+                        Assistant settings
+                    </h2>
+                </div>
+
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal
+                    aria-label="Close settings"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="settings-content">
+
+                <!-- Assistant identity -->
+                <div class="settings-section">
+
+                    <h3>Assistant identity</h3>
+
+                    <p>
+                        Customize how your assistant appears
+                        throughout the application.
+                    </p>
+
+
+                    <label
+                        for="assistantNameInput"
+                        class="input-label"
+                    >
+                        Assistant name
+                    </label>
+
+                    <input
+                        id="assistantNameInput"
+                        class="text-input"
+                        type="text"
+                        maxlength="40"
+                        placeholder="Enter assistant name"
+                    >
+
+
+                    <label
+                        for="assistantPersonalityInput"
+                        class="input-label"
+                    >
+                        Personality
+                    </label>
+
+                    <textarea
+                        id="assistantPersonalityInput"
+                        class="text-input textarea-input"
+                        maxlength="500"
+                        placeholder="Example: Friendly, calm, professional and concise."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- User identity -->
+                <div class="settings-section">
+
+                    <h3>Your profile</h3>
+
+                    <p>
+                        This information helps personalize
+                        your assistant experience.
+                    </p>
+
+
+                    <label
+                        for="userNameInput"
+                        class="input-label"
+                    >
+                        Your name
+                    </label>
+
+                    <input
+                        id="userNameInput"
+                        class="text-input"
+                        type="text"
+                        maxlength="60"
+                        placeholder="Your name"
+                    >
+
+                </div>
+
+
+                <!-- Speech settings -->
+                <div class="settings-section">
+
+                    <h3>Speech</h3>
+
+                    <label class="toggle-row">
+
+                        <span>
+                            Automatically speak assistant responses
+                        </span>
+
+                        <input
+                            id="settingsSpeechToggle"
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span class="toggle-switch"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    id="resetSettingsBtn"
+                    class="danger-btn"
+                    type="button"
+                >
+                    Reset
+                </button>
+
+                <div class="modal-footer-right">
+
+                    <button
+                        class="secondary-btn"
+                        type="button"
+                        data-close-modal
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        id="saveSettingsBtn"
+                        class="primary-btn"
+                        type="button"
+                    >
+                        Save changes
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         PROFILE MENU
+    ========================================================== -->
+    <div
+        id="profileMenu"
+        class="profile-menu hidden"
+    >
+
+        <div class="profile-menu-header">
+
+            <div
+                id="menuProfileAvatar"
+                class="profile-avatar large"
+            >
+                Y
+            </div>
+
+            <div>
+                <strong id="menuProfileName">
+                    You
+                </strong>
+
+                <span>
+                    Personal account
+                </span>
+            </div>
+
+        </div>
+
+        <button
+            id="menuSettingsBtn"
+            type="button"
+            class="profile-menu-item"
+        >
+            ⚙
+            <span>Settings</span>
+        </button>
+
+        <button
+            id="clearConversationBtn"
+            type="button"
+            class="profile-menu-item"
+        >
+            ◌
+            <span>Clear conversation</span>
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         NOTIFICATION PANEL
+    ========================================================== -->
+    <div
+        id="notificationPanel"
+        class="notification-panel hidden"
+    >
+
+        <div class="notification-header">
+            <strong>Notifications</strong>
+
+            <button
+                id="closeNotificationsBtn"
+                type="button"
+            >
+                ×
+            </button>
+        </div>
+
+        <div class="notification-empty">
+
+            <div class="empty-icon">
+                ♢
+            </div>
+
+            <h3>You're all caught up</h3>
+
+            <p>
+                Important assistant activity will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         TOAST NOTIFICATIONS
+    ========================================================== -->
+    <div
+        id="toastContainer"
+        class="toast-container"
+        aria-live="polite"
+    ></div>
+
+
+
+    <!-- =========================================================
+         CONFIRMATION MODAL
+    ========================================================== -->
+    <div
+        id="confirmationModal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <div class="modal-backdrop"></div>
+
+        <div class="modal-card small-modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">
+                        CONFIRM ACTION
+                    </span>
+
+                    <h2 id="confirmationTitle">
+                        Confirm action
+                    </h2>
+                </div>
+
+            </div>
+
+            <div class="confirmation-content">
+
+                <p id="confirmationMessage">
+                    Are you sure you want to continue?
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    id="confirmationCancelBtn"
+                    class="secondary-btn"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="confirmationConfirmBtn"
+                    class="primary-btn"
+                    type="button"
+                >
+                    Confirm
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         defer ensures the HTML is parsed before script execution.
+    ========================================================== -->
+    <script
+        src="script.js"
+        defer
+    ></script>
+
+</body>
+</html>
