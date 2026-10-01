@@ -71,9 +71,11 @@ if (
   const now = new Date();
 
   return {
-    reply: `The current time is ${now.toLocaleTimeString("en-IN", {
+    reply: `The current exact time is ${now.toLocaleTimeString("en-IN", {
+      timeZone: "Asia/Kolkata",
       hour: "2-digit",
       minute: "2-digit",
+      second: "2-digit",
       hour12: true
     })}.`,
     type: "utility"
