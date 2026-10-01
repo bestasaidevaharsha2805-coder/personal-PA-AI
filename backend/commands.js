@@ -56,20 +56,25 @@ async function processCommand({
   // Time
   // -----------------------------
 
-  if (
-    lower.includes("what time") ||
-    lower === "time"
-  ) {
-    const now = new Date();
+ if (
+  lower.includes("what time") ||
+  lower.includes("what is the time") ||
+  lower.includes("current time") ||
+  lower.includes("time now") ||
+  lower.includes("what's the time") ||
+  lower === "time" ||
+  lower === "time?"
+) {
+  const now = new Date();
 
-    return {
-      reply: `The current time is ${now.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
-      })}.`,
-      type: "utility"
-    };
-  }
+  return {
+    reply: `The current time is ${now.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    })}.`,
+    type: "utility"
+  };
+}
 
   // -----------------------------
   // Date
