@@ -1,5 +1,6 @@
 "use strict";
-
+const { askAI } = require("./ai");
+const { getMemories } = require("./memory");
 /*
   Personal AI PA - Command Processor
 
