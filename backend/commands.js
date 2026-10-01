@@ -55,13 +55,14 @@ const normalized = lower
       type: "conversation"
     };
   }
-
-  // -----------------------------
-  // Time
-  // -----------------------------
 // -----------------------------
 // Time
 // -----------------------------
+
+const normalized = lower
+  .replace(/[?!.,]/g, "")
+  .replace(/\s+/g, " ")
+  .trim();
 
 if (
   normalized === "time" ||
