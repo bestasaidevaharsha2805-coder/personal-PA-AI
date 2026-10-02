@@ -61,7 +61,19 @@ app.post("/api/chat", async (req, res) => {
       assistant
     });
 
+    // -----------------------------
+    // Save memory when requested
+    // -----------------------------
+
+    if (result.type === "memory" && result.memory) {
+      await addMemory(
+        result.memory.userId,
+        result.memory.text
+      );
+    }
+
     res.json(result);
+
   } catch (error) {
     console.error("Chat error:", error);
 
@@ -90,6 +102,7 @@ app.get("/api/memory", async (req, res) => {
     res.json({
       memories
     });
+
   } catch (error) {
     console.error("Memory error:", error);
 
@@ -100,7 +113,7 @@ app.get("/api/memory", async (req, res) => {
 });
 
 // -----------------------------
-// Add memory
+// Add memory manually
 // -----------------------------
 
 app.post("/api/memory", async (req, res) => {
@@ -116,12 +129,16 @@ app.post("/api/memory", async (req, res) => {
       });
     }
 
-    const memory = await addMemory(userId, text);
+    const memory = await addMemory(
+      userId,
+      text
+    );
 
     res.json({
       success: true,
       memory
     });
+
   } catch (error) {
     console.error("Add memory error:", error);
 
@@ -157,6 +174,7 @@ app.delete("/api/memory/:id", async (req, res) => {
     res.json({
       success: deleted
     });
+
   } catch (error) {
     console.error("Delete memory error:", error);
 
@@ -167,7 +185,7 @@ app.delete("/api/memory/:id", async (req, res) => {
 });
 
 // -----------------------------
-// Serve the frontend
+// Serve frontend
 // -----------------------------
 
 const frontendPath = path.join(
