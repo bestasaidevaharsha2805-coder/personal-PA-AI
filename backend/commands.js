@@ -204,3 +204,5 @@ return {
   reply: aiResult.reply,
   type: "conversation"
 };
+}
+module.exports = { processCommand };
